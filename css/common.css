@@ -1,0 +1,48 @@
+body{
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.showText{
+	margin: 0px auto;
+	width:300px;
+	height: 300px;
+	border: 10px solid DodgerBlue;
+	border-radius: 50%;
+	background-color: #fff;
+}
+.textView {
+	height: 95%;
+	color: red;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	font-size: 200px;
+
+}
+.scoreCount{
+	margin: 0 auto;
+	font-size: 30px;
+	font-weight: bold;
+
+}
+.inputText{
+	margin: 0 auto;
+	display: flex;
+	font-size: 30px;
+	font-weight: 500px;
+	font-family: "Comic Sans MS", Garamond, 'Impact';
+	width: 300px;
+	height: 60px;
+	border: 5px solid DodgerBlue;
+	border-radius: 5%;
+	background-color: #fff;
+}
+#mess{
+	text-align: center;
+	color: red;
+	margin-top: 20px;
+	font-size: 20px;
+}
