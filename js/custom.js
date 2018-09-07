@@ -45,7 +45,6 @@ $(document).ready(function() {
 
   function setWord() {
     wordCurrent = listWord[getRandom()];
-    $('#textShow').attr('data-key', wordCurrent.tv);
     $('#textShow').text(wordCurrent.tn);
     $('.present').text(numCorrect);
     $('.actually').text(totalWord);
