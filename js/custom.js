@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var listWord = [
     {
-      tv: 'a',
+      tv: ['a','b'],
       tn: 'あ'
     },
     {
@@ -28,11 +28,15 @@ $(document).ready(function() {
   function sendAnswer() {
     var answer = document.getElementById('resultInput').value;
     var p = document.getElementById('mess');
-    if(answer === wordCurrent.tv){
-      p.innerHTML = "Right";
-      numCorrect += 1;
-    }else{
-      p.innerHTML = "Wrong!!";
+    for(var i = 0; i < wordCurrent.tv.length; i ++){
+      if(answer === wordCurrent.tv[i]){
+        p.innerHTML = "Right";
+        numCorrect += 1;
+        break;
+        return false;
+      }else{
+        p.innerHTML = "Wrong!!";
+      }
     }
     document.getElementById('resultInput').value = "";
     setWord();
