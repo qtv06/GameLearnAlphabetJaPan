@@ -417,24 +417,27 @@ $(document).ready(function() {
     tn: 'ぴょ'
     }
   ];
-  var wordCurrent, numCorrect = 0, totalWord;
-  totalWord = listWord.length;
-  console.log(totalWord);
-  setWord();
+  var listSentence = [
+    "Very good",
+    "Good",
+    "Rather",
+    "Try more"
+  ];
+  var wordCurrent, numCorrect = 0, totalWord = 0;
+  var timeRepeat = 0;
+  var listWordSelect = [];
+  var p = document.getElementById('mess');
 
-  function sendAnswer() {
+
+  function checkAnswer() {
     var answer = document.getElementById('resultInput').value;
-    var p = document.getElementById('mess');
-    // for(var i = 0; i < wordCurrent.tv.length; i ++){
     if(answer === wordCurrent.tv){
       p.innerHTML = "Right";
       numCorrect += 1;
     }else{
       p.innerHTML = "Wrong!!";
     }
-    // }
-    document.getElementById('resultInput').value = "";
-    setWord();
+    checkTimeRepeat();
   }
 
   function getRandom() {
@@ -442,57 +445,92 @@ $(document).ready(function() {
     return random;
   }
 
+  function checkTimeRepeat(){
+    if(timeRepeat == totalWord*2) {
+      $('.content').css("display", "none");
+      $('.statistic').css("display", "block");
+      $('#score').text(numCorrect + "/" + timeRepeat);
+      let sentence;
+      let percentExactly = (numCorrect / timeRepeat) * 100;
+      if(percentExactly >= 80){
+        sentence = listSentence[0];
+      }else if(percentExactly >= 60 && percentExactly < 80){
+        sentence = listSentence[1];
+      }else if(percentExactly >= 45 && percentExactly < 60){
+        sentence = listSentence[2];
+      }else{
+        sentence = listSentence[3];
+      }
+      $('#praise').text(sentence);
+    }else{
+      setWord();
+    }
+  }
   function setWord() {
-    wordCurrent = listWord[getRandom()];
+    wordCurrent = listWordSelect[getRandom()];
+    $('#resultInput').val("");
     $('#textShow').text(wordCurrent.tn);
     $('.present').text(numCorrect);
-    $('.actually').text(totalWord);
-    // readFile();
+    $('.actually').text(totalWord * 2);
   }
-  // readFile('bangchucai.txt');
-
-  // function readFile(nameFile) {
-  //   var xhttp = new XMLHttpRequest();
-  //   xhttp.onreadystatechange = function() {
-  //     var data = this.responseText;
-  //     console.log(data);
-  //   }
-  //   xhttp.open("get", nameFile, true);
-  //   xhttp.send();
-  // }
   document.getElementById('resultInput').onkeypress = function(e) {
     var event = e || window.event;
     var charCode = event.which || event.code;
     if(charCode == '13'){
-      sendAnswer();
-      return false;
+      timeRepeat += 1;
+      checkAnswer();
     }
   }
 
-  function readFile() {
-    var xmlhttp, xmlDoc;
-    if (window.XMLHttpRequest)
-    {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    }
-    else
-    {// code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.open("GET","bangchucai.txt",false);
-    xmlhttp.send();
-    xmlDoc=xmlhttp.responseText;
-    console.log(xmlDoc);
-  }
-
+  // event on click btn
+  // btn try agin
+  $('.btnAgain').click(function(event) {
+    timeRepeat = 0;
+    numCorrect = 0;
+    $('.content').css("display", "block");
+    $('.statistic').css("display", "none");
+    p.innerHTML = "";
+    setWord();
+  });
+  // btn go
   $('.btnGo').click(function() {
-    var listWordSelect = [];
+    listWordSelect = [];
     var listCB = $('input[type="checkbox"]');
+    var count = 0;
     for(var i=0; i < listCB.length; i++){
-      if(listCB[i].checked === true){
-        listWordSelect.push(listWord.slice(listCB[i].value, 5));
+      if(listCB[i].checked ===true){
+        count += 1;
+        let ranGet = parseInt(listCB[i].value);
+        let arrGet = listWord.slice(ranGet, ranGet + 5);
+        arrGet.forEach(function(ele) {
+          listWordSelect.push(ele);
+        });
       }
     }
-    console.log(listWord);
+    if(count > 0){
+      $('.content').css("display", "block");
+      $('.selectType').css("display", "none");
+      totalWord = listWordSelect.length;
+      setWord();
+    }else{
+      alert('You must choose words to learn');
+    }
+  });
+  // btn back
+  $('.btnBack').click(function(event) {
+    timeRepeat = 0;
+    numCorrect = 0;
+    p.innerHTML = "";
+    $('.statistic').css("display", "none");
+    $('.selectType').css("display", "block");
+  });
+
+  // btn check all checkbox
+  $('.checkAll').click(function(event) {
+    if(this.checked){
+      $('input[type="checkbox"]').attr('checked', true);
+    }else{
+      $('input[type="checkbox"]').attr('checked', false);
+    }
   });
 });

@@ -20,36 +20,115 @@
 	<div class="main">
 		<div class="selectType">
 			<div class="checkbox">
-				<label>
-					<input type="checkbox" value="0">
-					a i u e o
-				</label>
-				<label>
-					<input type="checkbox" value="5">
-					ka ki ku ke ko
-				</label>
-				<label>
-					<input type="checkbox" value="10">
-					sa shi tsu se so
-				</label>
-				<label>
-					<input type="checkbox" value="15">
-					na ni nu ne no
-				</label>
+				<div class="row">
+					<h3>Select words to learn</h3>
+					<label style="margin-left: 30px;">
+							<input type="checkbox" class="checkAll" value="0">
+							Select all
+						</label>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<label>
+							<input type="checkbox" value="0">
+							a i u e o
+						</label>
+						<label>
+							<input type="checkbox" value="5">
+							ka ki ku ke ko
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							sa shi su se so
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							ta tu tsu te to
+						</label>
+						<label>
+							<input type="checkbox" value="15">
+							na ni nu ne no
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							ha hi fu he ho
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							ma mi mu me mo
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							ya yu yo
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							ra ri ru re ro
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							wa wo n
+						</label>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<label>
+							<input type="checkbox" value="0">
+							kya kyu kyo
+						</label>
+						<label>
+							<input type="checkbox" value="5">
+							sha shu sho
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							cha chu cho
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							nya nyu nyo
+						</label>
+						<label>
+							<input type="checkbox" value="15">
+							hya hyu hyo
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							mya myu myo
+						</label>
+						<label>
+							<input type="checkbox" value="10">
+							rya ryu ryo
+						</label>
+					</div>
+					<button type="button" class="btn btn-info btnGo">Go</button>
+				</div>
 			</div>
-			
-			<button type="button" class="btn btn-info btnGo">Go</button>
-			
+
+
 		</div>
-		<div class="showText">
-			<div class="textView" id="textShow"></div>
+		<div class="content">
+			<!-- answer word -->
+			<div class="answer">
+				<div class="showText">
+					<div class="textView" id="textShow"></div>
+				</div>
+				<div class="scoreCount mt-3"> Score:
+					<span class="present"></span> /
+					<span class="actually"></span>
+				</div>
+				<input type="textfield" class="inputText text-center mt-3" id="resultInput" value="">
+				<p id="mess"></p>
+			</div>
 		</div>
-		<div class="scoreCount mt-3">
-			<span class="present"></span> /
-			<span class="actually"></span>
+		<!-- statistic score -->
+		<div class="statistic">
+			<div class="wrap">
+				<p>score</p>
+				<p id="score">1/5</p>
+				<p id="praise">Very good</p>
+			</div>
+
+			<div class="btn btn-warning btnBack mt-20">Back</div>
+			<div class="btn btn-info btnAgain mt-20">Try Again</div>
 		</div>
-		<input type="textfield" class="inputText text-center mt-3" id="resultInput" value="">
-		<p id="mess"></p>
 	</div>
 	<script src="js/custom.js"></script>
 </body>
